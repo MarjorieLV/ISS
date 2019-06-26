@@ -1,0 +1,41 @@
+<h1>ISS Coordinates</h1>
+<head>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta http-equiv="refresh" content="5" >
+<style>
+ .container {
+    position: relative;
+    text-align: center;
+    color: white;
+ }
+
+ .iss-style {
+     position: absolute;
+     /* bottom: 50%; */
+     /* left: 50%; */
+     <% var l = coordinates.length; %>
+     bottom: <%=(parseInt(coordinates[l-1].lat)+90)*100/180%>%;
+     left: <%=(parseInt(coordinates[l-1].long)+180)*100/360%>%;
+ }
+</style>
+</head>
+
+<div class="container">
+    <img src="map.jpg" style="width:100%;" />
+    <img class="iss-style" src="iss.png" />
+
+    <% for(var i = 0 ; i < coordinates.length ; i++) {
+        var lat = (parseInt(coordinates[i].lat)+90)*100/180;
+        var long = (parseInt(coordinates[i].long)+180)*100/360;
+    %>
+    <div style="position:absolute;color:red;bottom:<%=lat%>%;left:<%=long%>%">.</div>
+    <% } %>
+</div>
+<p>
+    <% for(var i = 0 ; i < coordinates.length ; i++) {
+    %>
+
+        <p><%= coordinates[i].lat %>, <%= coordinates[i].long %></p>
+
+    <% } %>
+</p>
